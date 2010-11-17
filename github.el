@@ -6,7 +6,7 @@
    ((equal (directory-file-name directory) directory)
     (error "No .git directory found"))
    (t
-    (github-repo-root (file-name-directory (directory-file-name directory))))))
+    (github/repo-root (file-name-directory (directory-file-name directory))))))
 
 (defun github/line-range-at-pos ()
   "returns the line-range if a region is selected, otherwise current line"
@@ -31,7 +31,7 @@
                                      repo-root
                                      relative-file-name))))
 
-(defun github-open-file-line ()
+(defun github/reveal-in-browser ()
   "Opens the given revision/file/line in the browser"
   (interactive)
   (let* ((repo-root (github/repo-root (file-name-directory buffer-file-name)))
@@ -54,3 +54,5 @@
                (replace-regexp-in-string
                 " " "%20"
                 github-web-url))))))
+
+(provide 'github)
